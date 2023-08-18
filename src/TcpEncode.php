@@ -18,15 +18,6 @@ class TcpEncode implements ModbusFuncInterface
     //传输标志事务标志记录
     public static $TransactionId = 0;
     public $SubStation;
-    public $PDU_CMD_NUM;
-
-    //起始
-    public $PDU_INITIAL_ADDRESS;
-
-    public $PDU_ADDRESS_LENGTH;
-
-    public $PDU_ADDRESS;
-
 
     private function getNextTransactionId(): int
     {
@@ -37,16 +28,6 @@ class TcpEncode implements ModbusFuncInterface
         return static::$TransactionId;
     }
 
-
-    /**
-     * byte2hex
-     *
-     * Parse data and get it to the Hex form
-
-    ord('A') -> string 41
-     * @param string $value
-     * @return string
-     */
 
 
 
@@ -73,6 +54,15 @@ class TcpEncode implements ModbusFuncInterface
     }
 
 
+    /**
+     * byte2hex
+     *
+     * Parse data and get it to the Hex form
+
+    ord('A') -> string 41
+     * @param string $value
+     * @return string
+     */
     public static function Byte2Hex($value):string
     {
         $h = \dechex(($value >> 4) & 0x0F);
@@ -90,14 +80,14 @@ class TcpEncode implements ModbusFuncInterface
         );
     }
 
-    public function ReadHoldingRegister(int $addrDec, int $lenth): string
+    public function ReadHoldingRegister(int $addrDec, int $length): string
     {
         $pdu=\pack(
             "C2nn",
             $this->SubStation,
             0x03,
             $addrDec,
-            $lenth
+            $length
         );
         return $this->getMBAP($pdu).$pdu;
     }
@@ -114,12 +104,9 @@ class TcpEncode implements ModbusFuncInterface
         return $this->getMBAP($pdu).$pdu;
     }
 
-    public function ReadSingleRegister(int $addr):string
-    {
-        return '';
-    }
 
-    public function WriteSingleCoils(int $addrDec,bool $open): string
+
+    public function WriteSingleCoil(int $addrDec,bool $open): string
     {
         $switch=0x0;
         if ($open){
@@ -133,5 +120,24 @@ class TcpEncode implements ModbusFuncInterface
             $switch
         );
         return $this->getMBAP($pdu).$pdu;
+    }
+
+
+    public function ReadSingleCoil(int $addrDec):string
+    {
+        $pdu=\pack(
+            "CCn2",
+            $this->SubStation,
+            0x01,
+            $addrDec,
+            0x01
+        );
+        return $this->getMBAP($pdu).$pdu;
+    }
+
+    public function ReadSingleRegister(int $addr): string
+    {
+        // TODO: Implement ReadSingleRegister() method.
+        return "";
     }
 }

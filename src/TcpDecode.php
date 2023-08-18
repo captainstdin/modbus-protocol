@@ -25,4 +25,9 @@ class TcpDecode  implements ModbusFuncInterface
     {
         // TODO: Implement ReadSingleRegister() method.
     }
+
+    public function ReadHoldingRegister(int $addr, int $lenth): string
+    {
+        // TODO: Implement ReadHoldingRegister() method.
+    }
 }

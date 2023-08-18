@@ -73,29 +73,44 @@ class TcpEncode implements ModbusFuncInterface
     }
 
 
-    public function WriteSingleRegister(int $addr):string
-    {
-        return '';
-    }
-
     public static function Byte2Hex($value):string
     {
-        $h = dechex(($value >> 4) & 0x0F);
-        $l = dechex($value & 0x0F);
+        $h = \dechex(($value >> 4) & 0x0F);
+        $l = \dechex($value & 0x0F);
         return "$h$l";
     }
 
     protected function getMBAP(string $PDU):string{
-        return \pack("N2n",
+        //packagenum(2byte)+0x0000 + length(2byte)
+        return \pack(
+            "n2n",
             $this->getNextTransactionId(),
             0x0000,
-            \strlen($PDU),
-            0x01);
+            \strlen($PDU)
+        );
     }
 
-    public function ReadHoldingRegister(int $addr, int $lenth): string
+    public function ReadHoldingRegister(int $addrDec, int $lenth): string
     {
-        $pdu=\pack("C2nn",$addr,0x30,$addr,$lenth);
+        $pdu=\pack(
+            "C2nn",
+            $this->SubStation,
+            0x03,
+            $addrDec,
+            $lenth
+        );
+        return $this->getMBAP($pdu).$pdu;
+    }
+
+    public function WriteSingleRegister(int $addrDec,string $twoByte):string
+    {
+        $pdu=\pack(
+            "CCn2",
+            $this->SubStation,
+            0x06,
+            $addrDec,
+            $twoByte
+        );
         return $this->getMBAP($pdu).$pdu;
     }
 

@@ -2,32 +2,49 @@
 
 namespace captainstdin\modbus_protocol;
 
-class TcpDecode  implements ModbusFuncInterface
+class TcpDecode
 {
 
 
-    public function ReadCoils(int $addr): string
+    public static function ReadCoils(int $addr): string
     {
         // TODO: Implement ReadCoils() method.
+        return "";
     }
 
-    public function WriteSingleCoils(int $addr): string
+    public static function WriteSingleCoils(int $addr): string
     {
         // TODO: Implement WriteSingleCoils() method.
+        return "";
     }
 
-    public function WriteSingleRegister(int $addr): string
+    public static function WriteSingleRegister(int $addr, string $twoByte): string
     {
         // TODO: Implement WriteSingleRegister() method.
+        return "";
     }
 
-    public function ReadSingleRegister(int $addr): string
+    public static function ReadSingleRegister(int $addr): string
     {
         // TODO: Implement ReadSingleRegister() method.
+        return "";
     }
 
-    public function ReadHoldingRegister(int $addr, int $lenth): string
+    public static function ReadHoldingRegister(int $addr, int $lenth): string
     {
         // TODO: Implement ReadHoldingRegister() method.
+        return "";
+    }
+
+    public static function WriteSingleCoil(int $addr, bool $switchOpen): string
+    {
+        // TODO: Implement WriteSingleCoil() method.
+        return "";
+    }
+
+    public static function ReadSingleCoil(int $add): string
+    {
+        // TODO: Implement ReadSingleCoil() method.
+        return "";
     }
 }

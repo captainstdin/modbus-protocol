@@ -2,6 +2,10 @@
 
 namespace captainstdin\modbus_protocol;
 
+/**
+ * @author captainstdin
+ * @func 构建读/写请求体，也许配合Decode去解析
+ */
 class TcpEncode implements ModbusFuncInterface
 {
 

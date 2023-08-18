@@ -119,8 +119,19 @@ class TcpEncode implements ModbusFuncInterface
         return '';
     }
 
-    public function WriteSingleCoils(int $addr): string
+    public function WriteSingleCoils(int $addrDec,bool $open): string
     {
-        // TODO: Implement WriteSingleCoils() method.
+        $switch=0x0;
+        if ($open){
+            $switch=0xFF00;
+        }
+        $pdu=\pack(
+            "CCn2",
+            $this->SubStation,
+            0x05,
+            $addrDec,
+            $switch
+        );
+        return $this->getMBAP($pdu).$pdu;
     }
 }

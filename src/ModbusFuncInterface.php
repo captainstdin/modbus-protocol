@@ -8,7 +8,7 @@ interface ModbusFuncInterface
     public function ReadCoils(int $addr):string;
 
 
-    public function WriteSingleCoils(int $addr):string;
+    public function WriteSingleCoils(int $addr,bool $switchOpen):string;
 
 
     public function WriteSingleRegister(int $addr,string $twoByte):string;

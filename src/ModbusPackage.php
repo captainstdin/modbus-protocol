@@ -2,6 +2,9 @@
 
 namespace captainstdin\modbus_protocol;
 
+/**
+ * 包内容
+ */
 class ModbusPackage
 {
     public $TransactionId;
@@ -11,7 +14,6 @@ class ModbusPackage
     public $Length;
 
     public $StationId;
-
 
     public $CommandId;
 
@@ -30,9 +32,6 @@ class ModbusPackage
 
     const WriteMultipleRegister=0x10;
 
-
-
-
     public function GetPDU():string
     {
         return "";
@@ -43,5 +42,7 @@ class ModbusPackage
         return "";
     }
 
+
+    public $rawBuff;
 
 }

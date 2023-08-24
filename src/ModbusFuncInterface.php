@@ -12,7 +12,7 @@ interface ModbusFuncInterface
 
     public function ReadSingleCoil(int $add):string;
 
-    public function WriteSingleRegister(int $addr,string $twoByte):string;
+    public function WriteSingleRegister(int $addr,int $twoByte):string;
 
 
     public function ReadSingleRegister(int $addr):string;

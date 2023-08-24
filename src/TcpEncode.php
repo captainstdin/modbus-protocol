@@ -96,7 +96,7 @@ class TcpEncode implements ModbusFuncInterface
         return $this->getMBAP($pdu).$pdu;
     }
 
-    public function WriteSingleRegister(int $addrDec,string $twoByte):string
+    public function WriteSingleRegister(int $addrDec,int $twoByte):string
     {
         $pdu=\pack(
             "CCn2",

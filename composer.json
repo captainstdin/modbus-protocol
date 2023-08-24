@@ -1,7 +1,7 @@
 {
   "name": "captainstdin/modbus_protocol",
   "description": "a protocol of modbus",
-  "version": "1.2.0",
+  "version": "1.2.1",
 
   "authors": [
     {

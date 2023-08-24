@@ -2,7 +2,7 @@
   "name": "captainstdin/modbus_protocol",
   "description": "a protocol of modbus",
 
-  "version": "1.0.0",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "hivipcn@icloud.com",

@@ -8,7 +8,7 @@ class TcpDecode
 
     public $package;
 
-    public static function Parse (string $buff):self
+    public static function Parse (\string $buff):self
     {
         return new self($buff);
     }
@@ -49,37 +49,37 @@ class TcpDecode
         return $result;
     }
 
-    public static function WriteSingleCoils(int $addr): string
+    public static function WriteSingleCoils(\int $addr): \string
     {
         // TODO: Implement WriteSingleCoils() method.
         return "";
     }
 
-    public static function WriteSingleRegister(int $addr, string $twoByte): string
+    public static function WriteSingleRegister(\int $addr, \string $twoByte): \string
     {
         // TODO: Implement WriteSingleRegister() method.
         return "";
     }
 
-    public static function ReadSingleRegister(int $addr): string
+    public static function ReadSingleRegister(\int $addr): \string
     {
         // TODO: Implement ReadSingleRegister() method.
         return "";
     }
 
-    public static function ReadHoldingRegister(int $addr, int $lenth): string
+    public static function ReadHoldingRegister(\int $addr, \int $lenth): \string
     {
         // TODO: Implement ReadHoldingRegister() method.
         return "";
     }
 
-    public static function WriteSingleCoil(int $addr, bool $switchOpen): string
+    public static function WriteSingleCoil(\int $addr, \bool $switchOpen): \string
     {
         // TODO: Implement WriteSingleCoil() method.
         return "";
     }
 
-    public static function ReadSingleCoil(int $add): string
+    public static function ReadSingleCoil(\int $add): \string
     {
         // TODO: Implement ReadSingleCoil() method.
         return "";

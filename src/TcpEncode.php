@@ -10,12 +10,12 @@ class TcpEncode implements ModbusFuncInterface
 {
 
 
-    public function __construct(int $SubStation)
+    public function __construct(\int $SubStation)
     {
         $this->SubStation=$SubStation;
     }
 
-    public static function NewConn(int $SubStation):self{
+    public static function NewConn(\int $SubStation):self{
         return new static($SubStation);
     }
 
@@ -23,7 +23,7 @@ class TcpEncode implements ModbusFuncInterface
     public static $TransactionId = 0;
     public $SubStation;
 
-    private function getNextTransactionId(): int
+    private function getNextTransactionId(): \int
     {
         static::$TransactionId++;
         if (static::$TransactionId > 0xffff) {
@@ -40,7 +40,7 @@ class TcpEncode implements ModbusFuncInterface
      * @return void
      * 读取单个线圈
      */
-    public function  ReadCoils(int $addr):string
+    public function  ReadCoils(\int $addr):\string
     {
         $pdu='';
         return $this->getMBAP($pdu).$pdu;
@@ -52,7 +52,7 @@ class TcpEncode implements ModbusFuncInterface
      * @return void
      * 读取 离散输入
      */
-    public function  ReadDiscreteInputs():string
+    public function  ReadDiscreteInputs():\string
     {
         return "";
     }
@@ -67,14 +67,14 @@ class TcpEncode implements ModbusFuncInterface
      * @param string $value
      * @return string
      */
-    public static function Byte2Hex($value):string
+    public static function Byte2Hex($value):\string
     {
         $h = \dechex(($value >> 4) & 0x0F);
         $l = \dechex($value & 0x0F);
         return "$h$l";
     }
 
-    protected function getMBAP(string $PDU):string{
+    protected function getMBAP(\string $PDU):\string{
         //packagenum(2byte)+0x0000 + length(2byte)
         return \pack(
             "n2n",
@@ -84,7 +84,7 @@ class TcpEncode implements ModbusFuncInterface
         );
     }
 
-    public function ReadHoldingRegister(int $addrDec, int $length): string
+    public function ReadHoldingRegister(\int $addrDec, \int $length): \string
     {
         $pdu=\pack(
             "C2nn",
@@ -96,7 +96,7 @@ class TcpEncode implements ModbusFuncInterface
         return $this->getMBAP($pdu).$pdu;
     }
 
-    public function WriteSingleRegister(int $addrDec,int $twoByte):string
+    public function WriteSingleRegister(\int $addrDec,\int $twoByte):\string
     {
         $pdu=\pack(
             "CCn2",
@@ -110,7 +110,7 @@ class TcpEncode implements ModbusFuncInterface
 
 
 
-    public function WriteSingleCoil(int $addrDec,bool $open): string
+    public function WriteSingleCoil(\int $addrDec,\bool $open): \string
     {
         $switch=0x0;
         if ($open){
@@ -127,7 +127,7 @@ class TcpEncode implements ModbusFuncInterface
     }
 
 
-    public function ReadSingleCoil(int $addrDec):string
+    public function ReadSingleCoil(\int $addrDec):\string
     {
         $pdu=\pack(
             "CCn2",
@@ -139,7 +139,7 @@ class TcpEncode implements ModbusFuncInterface
         return $this->getMBAP($pdu).$pdu;
     }
 
-    public function ReadSingleRegister(int $addr): string
+    public function ReadSingleRegister(\int $addr): \string
     {
         // TODO: Implement ReadSingleRegister() method.
         return "";

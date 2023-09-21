@@ -32,12 +32,12 @@ class ModbusPackage
 
     const WriteMultipleRegister=0x10;
 
-    public function GetPDU():string
+    public function GetPDU():\string
     {
         return "";
     }
 
-    public function GetMBAP():string
+    public function GetMBAP():\string
     {
         return "";
     }
